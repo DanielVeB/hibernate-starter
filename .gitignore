@@ -42,7 +42,11 @@ test-output/
 transaction.log
 infinispan.log
 
+## Gradle
 .gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
 
 #Misc.
 ObjectStore
