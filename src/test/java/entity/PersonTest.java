@@ -12,6 +12,11 @@ import java.util.List;
 class PersonTest extends DatabaseTest {
 
     @Override
+    protected void loadData() {
+
+    }
+
+    @Override
     protected Metadata getMetadata(StandardServiceRegistry standardRegistry) {
         return new MetadataSources(standardRegistry)
                 .addAnnotatedClass(Person.class)
@@ -33,7 +38,7 @@ class PersonTest extends DatabaseTest {
     }
 
     @Test
-    void testQuery(){
+    void testQuery() {
         session.createQuery("DELETE FROM Person");
         session.persist(new Person());
         session.persist(new Person());

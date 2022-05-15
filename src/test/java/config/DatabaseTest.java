@@ -14,7 +14,7 @@ public abstract class DatabaseTest {
     protected Session session = null;
 
     @BeforeAll
-    void setup(){
+    void setup() {
         try {
             StandardServiceRegistry standardRegistry
                     = new StandardServiceRegistryBuilder()
@@ -27,23 +27,35 @@ public abstract class DatabaseTest {
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
         }
+
+        initData();
     }
+
+
+    private void initData() {
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        loadData();
+        session.getTransaction().commit();
+    }
+
+    protected abstract void loadData();
 
     protected abstract Metadata getMetadata(StandardServiceRegistry standardRegistry);
 
     @BeforeEach
-    void setupThis(){
+    void setupThis() {
         session = sessionFactory.openSession();
         session.beginTransaction();
     }
 
     @AfterEach
-    void tearThis(){
+    void tearThis() {
         session.getTransaction().commit();
     }
 
     @AfterAll
-    static void tear(){
+    static void tear() {
         sessionFactory.close();
     }
 
