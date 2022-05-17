@@ -1,4 +1,4 @@
-package samples.mapping.inheritance.mappedsuperclass;
+package samples.mapping.inheritance.tableperclass;
 
 import config.DatabaseTest;
 import org.hibernate.boot.Metadata;
@@ -15,9 +15,9 @@ class BillingDetailsTest extends DatabaseTest {
     @Override
     protected void loadData() {
         List<BillingDetails> details = Arrays.asList(
-                new CreditCard("owner1", "card1"),
-                new BankAccount("owner1"),
-                new BankAccount("owner1"));
+                new CreditCard(),
+                new BankAccount(),
+                new BankAccount());
         details.forEach(session::persist);
     }
 
@@ -32,16 +32,12 @@ class BillingDetailsTest extends DatabaseTest {
     }
 
     @Test
-    public void getBillingDetailsSeparatelyAccountsAndCards() {
+    public void getAllBilingDetailsShouldReturn3Entities() {
 
-        // Impossible Cannot use polymorphic query to get all biling details
-        // var details = session.createQuery("SELECT bd FROM BillingDetails bd", BillingDetails.class).getResultList();
+        //GET all billing details using UNION
+         var details = session.createQuery("SELECT bd FROM BillingDetails bd", BillingDetails.class).getResultList();
 
-        var accounts = session.createQuery("SELECT a FROM BankAccount a",BankAccount.class).getResultList();
-        Assertions.assertEquals(2,accounts.size());
-
-        var cards = session.createQuery("SELECT c FROM CreditCard c",CreditCard.class).getResultList();
-        Assertions.assertEquals(1,cards.size());
+         Assertions.assertEquals(3, details.size());
 
     }
 }
