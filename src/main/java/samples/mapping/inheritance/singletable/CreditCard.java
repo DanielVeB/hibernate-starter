@@ -1,10 +1,12 @@
-package samples.mapping.inheritance.tableperclass;
+package samples.mapping.inheritance.singletable;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CreditCard extends BillingDetails {
+@DiscriminatorValue("CC")
+public class CreditCard extends BillingDetails{
 
     @NotNull
     private String cardNumber;
