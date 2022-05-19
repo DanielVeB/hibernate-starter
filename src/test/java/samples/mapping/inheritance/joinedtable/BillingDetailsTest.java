@@ -1,4 +1,4 @@
-package samples.mapping.inheritance.singletable;
+package samples.mapping.inheritance.joinedtable;
 
 import config.DatabaseTest;
 import org.hibernate.boot.Metadata;
@@ -6,10 +6,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 class BillingDetailsTest extends DatabaseTest {
 
@@ -31,7 +31,6 @@ class BillingDetailsTest extends DatabaseTest {
                 .getMetadataBuilder()
                 .build();
     }
-
 
     @Test
     public void getAllBilingDetailsShouldReturn3Entities() {
