@@ -1,4 +1,4 @@
-package samples.mapping.inheritance.joinedtable;
+package samples.mapping.inheritance.onetomany;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "CREDITCARD_ID")
-public class CreditCard extends BillingDetails{
+public class CreditCard extends BillingDetails {
 
     @NotNull
     private String cardNumber;

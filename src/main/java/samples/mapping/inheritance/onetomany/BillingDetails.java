@@ -1,4 +1,4 @@
-package samples.mapping.inheritance.joinedtable;
+package samples.mapping.inheritance.onetomany;
 
 
 import javax.persistence.*;
@@ -15,6 +15,9 @@ public abstract class BillingDetails {
     @NotNull
     protected String owner;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected User user;
+
     public Long getId() {
         return id;
     }
@@ -29,5 +32,13 @@ public abstract class BillingDetails {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

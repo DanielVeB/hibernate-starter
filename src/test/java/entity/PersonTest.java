@@ -11,17 +11,15 @@ import java.util.List;
 
 class PersonTest extends DatabaseTest {
 
+
     @Override
     protected void loadData() {
 
     }
 
     @Override
-    protected Metadata getMetadata(StandardServiceRegistry standardRegistry) {
-        return new MetadataSources(standardRegistry)
-                .addAnnotatedClass(Person.class)
-                .getMetadataBuilder()
-                .build();
+    protected MetadataSources addAnnotatedClasses(MetadataSources sources) {
+        return sources.addAnnotatedClass(Person.class);
     }
 
     @Test
