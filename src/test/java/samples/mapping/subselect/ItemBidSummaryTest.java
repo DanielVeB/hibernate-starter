@@ -9,17 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class ItemBidSummaryTest extends DatabaseTest {
 
-
-    @Override
-    protected Metadata getMetadata(StandardServiceRegistry standardRegistry) {
-        return new MetadataSources(standardRegistry)
-                .addAnnotatedClass(Bid.class)
-                .addAnnotatedClass(Item.class)
-                .addAnnotatedClass(ItemBidSummary.class)
-                .getMetadataBuilder()
-                .build();
-    }
-
     @Override
     protected void loadData() {
         Bid bid = new Bid(1, 10);
@@ -30,6 +19,15 @@ class ItemBidSummaryTest extends DatabaseTest {
         session.persist(item);
         session.persist(item2);
     }
+
+    @Override
+    protected MetadataSources addAnnotatedClasses(MetadataSources sources) {
+        return sources
+                .addAnnotatedClass(Bid.class)
+                .addAnnotatedClass(Item.class)
+                .addAnnotatedClass(ItemBidSummary.class);
+    }
+
 
     @Test
     void testSubselectMapping_ShouldReturnItemBidSummaryWithOneBids() {

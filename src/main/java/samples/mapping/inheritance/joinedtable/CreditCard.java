@@ -18,4 +18,5 @@ public class CreditCard extends BillingDetails{
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
+
 }

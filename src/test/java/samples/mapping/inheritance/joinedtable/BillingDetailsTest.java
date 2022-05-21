@@ -1,15 +1,12 @@
 package samples.mapping.inheritance.joinedtable;
 
 import config.DatabaseTest;
-import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BillingDetailsTest extends DatabaseTest {
 
@@ -23,13 +20,11 @@ class BillingDetailsTest extends DatabaseTest {
     }
 
     @Override
-    protected Metadata getMetadata(StandardServiceRegistry standardRegistry) {
-        return new MetadataSources(standardRegistry)
+    protected MetadataSources addAnnotatedClasses(MetadataSources sources) {
+        return sources
                 .addAnnotatedClass(BillingDetails.class)
                 .addAnnotatedClass(CreditCard.class)
-                .addAnnotatedClass(BankAccount.class)
-                .getMetadataBuilder()
-                .build();
+                .addAnnotatedClass(BankAccount.class);
     }
 
     @Test

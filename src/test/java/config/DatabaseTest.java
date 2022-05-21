@@ -2,7 +2,7 @@ package config;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.jupiter.api.*;
@@ -21,7 +21,9 @@ public abstract class DatabaseTest {
                     .configure("hibernate-test.cfg.xml")
                     .build();
 
-            sessionFactory = getMetadata(standardRegistry)
+            sessionFactory = addAnnotatedClasses(new MetadataSources(standardRegistry))
+                    .getMetadataBuilder()
+                    .build()
                     .getSessionFactoryBuilder().build();
 
         } catch (Throwable ex) {
@@ -41,7 +43,7 @@ public abstract class DatabaseTest {
 
     protected abstract void loadData();
 
-    protected abstract Metadata getMetadata(StandardServiceRegistry standardRegistry);
+    protected abstract MetadataSources addAnnotatedClasses(MetadataSources sources);
 
     @BeforeEach
     void setupThis() {
