@@ -1,4 +1,4 @@
-package samples.mapping.collections.manytoone;
+package samples.mapping.inheritance.manytoone;
 
 import samples.mapping.inheritance.joinedtable.BillingDetails;
 

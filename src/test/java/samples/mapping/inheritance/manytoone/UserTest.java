@@ -1,4 +1,4 @@
-package samples.mapping.collections.manytoone;
+package samples.mapping.inheritance.manytoone;
 
 import config.DatabaseTest;
 import org.hibernate.boot.MetadataSources;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import samples.mapping.inheritance.joinedtable.BillingDetails;
 import samples.mapping.inheritance.joinedtable.CreditCard;
+import samples.mapping.inheritance.manytoone.User;
 
 class UserTest extends DatabaseTest {
 
